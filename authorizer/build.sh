@@ -1,0 +1,1 @@
+npm install && zip -x "build.sh" -r authorizer.zip .

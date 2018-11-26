@@ -1,0 +1,1 @@
+zip -x "build.sh" -r api.zip .
