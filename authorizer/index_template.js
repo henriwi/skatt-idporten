@@ -37,33 +37,7 @@ const toFormData = (params) => {
 }
 
 const authenticate = async (params) => {
-  const token = getToken(params);
-  const tokenResponse = await fetch('https://oidc-ver2.difi.no/idporten-oidc-provider/tokeninfo',
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
-      body: toFormData({ token: token })
-    });
-
-  const tokenInfo = await tokenResponse.json();
-
-  if (tokenInfo.active) {
-    console.log("Valid token!");
-    return {
-      principalId: tokenInfo.pid,
-      policyDocument: getPolicyDocument('Allow', params.methodArn),
-      context: { scope: tokenInfo.scope }
-    }
-  } else {
-    console.log("Invalid token!");
-    return {
-      principalId: 'anonymous',
-      policyDocument: getPolicyDocument('Deny', ''),
-      context: {}
-    }
-  }
+  // validate token
 }
 
 exports.handler = async (event, context) => {
